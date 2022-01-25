@@ -35,4 +35,6 @@ async def on_ready():
     log_event('Bot is ready!')
     await bot.change_presence(activity=discord.Game(name='https://divvynotes.com', type=1, url='https://divvynotes.com'))
 
+print(TOKEN)
+
 bot.run(TOKEN, bot=True, reconnect=True)
