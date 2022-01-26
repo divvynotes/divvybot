@@ -19,12 +19,14 @@ def log_event(string):
     f.close()
 
 
-init_ext = ['cogs.members', 'cogs.about', 'cogs.owner']
+init_ext = ['cogs.members', 'cogs.about', 'cogs.owner', 'cogs.moderation']
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-bot = commands.Bot(command_prefix=get_prefix, description='The Divvynotes Discord bot')
+intents = discord.Intents.all()
+bot = commands.Bot(command_prefix=get_prefix, owner_id = 656727549681860658, description='The Divvynotes Discord bot', intents=intents)
+
 
 if __name__ == '__main__':
     for ext in init_ext:
@@ -34,7 +36,5 @@ if __name__ == '__main__':
 async def on_ready():
     log_event('Bot is ready!')
     await bot.change_presence(activity=discord.Game(name='https://divvynotes.com', type=1, url='https://divvynotes.com'))
-
-print(TOKEN)
 
 bot.run(TOKEN, bot=True, reconnect=True)

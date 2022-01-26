@@ -6,8 +6,9 @@ class MembersCog(commands.Cog):
         self.bot = bot
         
     @commands.Cog.listener()
-    async def on_member_join(self, ctx, member):
-        await guild.system_channel.send('{member.mention} welcome to the Divvynotes server! While you\'re here, please check out and become a member of our site at https://divvynotes.com !')
+    async def on_member_join(self, member: discord.Member):
+        channel = member.guild.system_channel
+        await channel.send(f'{member.mention} welcome to the Divvynotes server! While you\'re here, please check out and become a member of our site at https://divvynotes.com !')
     
     @commands.command(name='fetchuser', help='Fetches a user\'s information on this server.')
     async def fetchuser(self, ctx, *, member: discord.Member=None):
