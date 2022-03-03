@@ -22,8 +22,6 @@ class ModerationCog(commands.Cog):
             except discord.errors.Forbidden:
                 unchangeable.append(str(member.name + '#' + member.discriminator))
         await ctx.send(f'Edited {changecounter} accounts to the nickname of: "{newnamestr}"\nI was unable to change the nick of: `{unchangeable}`')
-        
-    
 
     @commands.command(name='ban', help='Bans a member; does not work on members with administrator perms.')
     @commands.has_permissions(administrator=True)
@@ -58,11 +56,13 @@ class ModerationCog(commands.Cog):
             await ctx.send('You need an argument here! Try `div help <command>`')
         elif(isinstance(error, discord.ext.commands.errors.CommandOnCooldown)):
             await ctx.send(error)
-            
         else:
-            await ctx.send('An exception occured during your request: `' + str(error) + '`')
-        print(traceback.format_exc())
-#         log_event(str(ctx.author) + ': ' + str(error))
+            await ctx.send(f'An exception occured during your request! I have logged this error and sent it for review!\nError details here:||`{error}`||')
+            f = open('err.txt', 'a')
+            curtime = time.strftime('%H:%M:%S', time.localtime())
+            output = f'\n\n[{curtime}]\n{traceback.format_exc()}'
+            f.write(output)
+            f.close()
     
         
 def setup(bot):
