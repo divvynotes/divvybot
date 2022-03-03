@@ -11,7 +11,7 @@ class ModerationCog(commands.Cog):
     @commands.has_permissions(administrator=True)
     @commands.cooldown(1, 180.0, commands.BucketType.guild)
     async def nickall(self, ctx, *newname):
-        await ctx.send('Changing nicknames, this could take a while...')
+        await ctx.send('Changing nicknames, please be patient with the bot...')
         changecounter = 0
         unchangeable = []
         newnamestr = ' '.join(newname)
