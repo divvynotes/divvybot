@@ -1,9 +1,10 @@
 import discord
-import time
-import os
 from discord.ext import commands
-from dotenv import load_dotenv
 
+import time
+import traceback
+import os
+from dotenv import load_dotenv
 
 def get_prefix(bot, message):
     prefixes = ['div ', 'divvy ', 'obama', '\\']
